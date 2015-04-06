@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		//i got mad!!!!!!!!!!!!
 		//you know!!!!
+		//I almost cry T T!!!
 	}
 	
 	private void visitJSP(){
