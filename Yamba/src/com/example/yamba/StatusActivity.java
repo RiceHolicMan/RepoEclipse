@@ -22,6 +22,7 @@ public class StatusActivity extends Activity {
 	Twitter twitter;
 	TextView textCount;
 	//i got mad!!!!!! 
+	//i got mad in GitHub T T!!!!
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
