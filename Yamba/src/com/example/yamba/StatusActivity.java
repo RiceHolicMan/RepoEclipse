@@ -23,6 +23,7 @@ public class StatusActivity extends Activity {
 	TextView textCount;
 	//i got mad!!!!!! 
 	//i got mad in GitHub T T!!!!
+	//TAT so mad!!!
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
