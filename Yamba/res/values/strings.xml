@@ -8,5 +8,12 @@
     <string name="hintText">Please enter your 140-character status</string>
     <string name="buttonUpdate">Update</string>
     <string name="textCount">000</string>
+    <string name="titleUsername">Username</string>
+    <string name="titlePassword">Password</string>
+    <string name="summaryPassword">summaryPassword</string>
+    <string name="summaryUsername">summaryUsername</string>
+    <string name="titleApiRoot">ApiRoot</string>
+    <string name="summaryApiRoot">summaryApiRoot</string>
+    <string name="titlePrefs">Prefs</string>
 
 </resources>
