@@ -22,6 +22,7 @@ public class StatusActivity extends Activity {
 	Twitter twitter;
 	TextView textCount;
 	//go ahead man!!!
+	//hey hey!
 	
 	@SuppressWarnings("deprecation")
 	@Override
