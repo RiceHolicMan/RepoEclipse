@@ -1,7 +1,11 @@
 package com.speexenc;
 
 class Speex  {
-
+	
+	//too excited your sister !!!!!
+	
+	
+	
 	/* quality
 	 * 1 : 4kbps (very noticeable artifacts, usually intelligible)
 	 * 2 : 6kbps (very noticeable artifacts, good intelligibility)
