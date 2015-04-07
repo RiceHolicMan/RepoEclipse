@@ -23,7 +23,7 @@ public class StatusActivity extends Activity {
 	TextView textCount;
 	//go ahead man!!!
 	//hey hey!
-	
+	// good morning!
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
