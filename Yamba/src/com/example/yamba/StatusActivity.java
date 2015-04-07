@@ -26,9 +26,9 @@ public class StatusActivity extends Activity {
 	private static final String TAG="StatusActivity";
 	EditText editText;
 	Button updateButton;
-	Twitter twitter;
+	
 	TextView textCount;
-	SharedPreferences prefs;
+	
 	//got mad !!!
 	@SuppressWarnings("deprecation")
 	@Override
@@ -39,16 +39,7 @@ public class StatusActivity extends Activity {
 		textCount = (TextView) findViewById(R.id.textView2);
 		editText = (EditText) findViewById(R.id.editText1);
 		updateButton = (Button) findViewById(R.id.button1);
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		prefs.registerOnSharedPreferenceChangeListener(new OnSharedPreferenceChangeListener() {
-			
-			@Override
-			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-					String key) {
-				// TODO Auto-generated method stub
-				twitter = null;
-			}
-		});
+		
 		
 		updateButton.setOnClickListener(new OnClickListener(){
 
@@ -97,27 +88,14 @@ public class StatusActivity extends Activity {
 		//twitter.setAPIRootUrl("http://yamba.marakana.com/api");
 	}
 	
-	@SuppressWarnings("deprecation")
-	private Twitter getTwitter(){
-		if(twitter == null){
-			String username, password, apiRoot;
-			username = prefs.getString("username", "student");
-			password = prefs.getString("password", "password");
-			apiRoot = prefs.getString("apiRoot", "http://yamba.marakana.com/api");
-			twitter = new Twitter(username, password);
-			twitter.setAPIRootUrl(apiRoot);
-		
-			
-		}
-		return twitter;
-	} 
+	
 	
 	class PostToTwitter extends AsyncTask<String, Integer, String>{
 
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			Twitter twitter = getTwitter();
+			Twitter twitter = ((YambaApplication) getApplication()).getTwitter();
 			winterwell.jtwitter.Status status = twitter.updateStatus(params[0]);
 			return status.text;
 		}
@@ -149,6 +127,12 @@ public class StatusActivity extends Activity {
 		switch(item.getItemId()){
 		case R.id.action_settings:
 			startActivity(new Intent(this, PrefsActivity.class));
+			break;
+		case R.id.itemServiceStart:
+			startService(new Intent(this, UpdaterService.class));
+			break;
+		case R.id.itemServiceStop:
+			stopService(new Intent(this, UpdaterService.class));
 			break;
 		}
 		return super.onOptionsItemSelected(item);
