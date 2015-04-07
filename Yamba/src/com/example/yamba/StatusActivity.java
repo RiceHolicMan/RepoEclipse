@@ -46,7 +46,7 @@ public class StatusActivity extends Activity {
 			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 					String key) {
 				// TODO Auto-generated method stub
-				
+				twitter = null;
 			}
 		});
 		
@@ -93,15 +93,31 @@ public class StatusActivity extends Activity {
 		}
 		);
 		
-		twitter = new Twitter("student","password");
-		twitter.setAPIRootUrl("http://yamba.marakana.com/api");
+		//twitter = new Twitter("student","password");
+		//twitter.setAPIRootUrl("http://yamba.marakana.com/api");
 	}
+	
+	@SuppressWarnings("deprecation")
+	private Twitter getTwitter(){
+		if(twitter == null){
+			String username, password, apiRoot;
+			username = prefs.getString("username", "student");
+			password = prefs.getString("password", "password");
+			apiRoot = prefs.getString("apiRoot", "http://yamba.marakana.com/api");
+			twitter = new Twitter(username, password);
+			twitter.setAPIRootUrl(apiRoot);
+		
+			
+		}
+		return twitter;
+	} 
 	
 	class PostToTwitter extends AsyncTask<String, Integer, String>{
 
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
+			Twitter twitter = getTwitter();
 			winterwell.jtwitter.Status status = twitter.updateStatus(params[0]);
 			return status.text;
 		}
