@@ -10,6 +10,8 @@ public class PrefsActivity extends PreferenceActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.prefs); 
+		//T T how excited!!!
+		// how you gain!!!
 	}
 
 }
