@@ -5,7 +5,9 @@ import java.util.List;
 import winterwell.jtwitter.Twitter;
 
 import android.app.Service;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -18,6 +20,9 @@ public class UpdaterService extends Service {
 	private Updater updater;
 	private YambaApplication yamba;
 	
+	DbHelper dbHelper;
+	SQLiteDatabase db;
+	
 	
 	@Override
 	public void onCreate() {
@@ -25,6 +30,9 @@ public class UpdaterService extends Service {
 		super.onCreate();
 		this.yamba = (YambaApplication) getApplication();
 		this.updater = new Updater();
+		
+		dbHelper = new DbHelper(this);
+		
 		Log.d(TAG, "onCreated");
 	}
 
@@ -78,10 +86,21 @@ public class UpdaterService extends Service {
 				try {
 					//Twitter twitter = yamba.getTwitter();
 					timeline = yamba.getTimeLine();
+					
+					db = dbHelper.getWritableDatabase();
+					ContentValues values = new ContentValues();
 					for(TimeLine status : timeline){
 						Log.d(TAG, String.format("%s -- %s", status.username, status.text));
+						values.clear();
+						values.put(DbHelper.C_ID, status.id);
+						values.put(DbHelper.C_CREATED_AT, status.createAt);
+						values.put(DbHelper.C_SOURCE, status.source);
+						values.put(DbHelper.C_TEXT, status.text);
+						values.put(DbHelper.C_USER, status.username);
+						db.insertOrThrow(DbHelper.TABLE, null, values);
 					}
-						
+					
+					db.close();
 					Log.d(TAG, "Updater ran");
 					Thread.sleep(DELAY);
 				} catch (InterruptedException e) {

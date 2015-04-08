@@ -15,7 +15,7 @@ public class YambaApplication extends Application {
 	private static final String TAG=YambaApplication.class.getSimpleName();
 	Twitter twitter;
 	SharedPreferences prefs;
-	
+	private static int dataId = 0;
 	private boolean serviceRunning;
 	
 	public boolean isServiceRunning(){
@@ -62,7 +62,10 @@ public class YambaApplication extends Application {
 		List<TimeLine> list = new ArrayList<TimeLine>();
 		
 		for(int i = 0; i < 20; i++){
-			TimeLine t = new TimeLine("user"+new Random().nextInt(100), "text"+new Random().nextInt(100));
+			TimeLine t = new TimeLine(
+					dataId++,
+					"createAt" + new Random().nextInt(100), "source" + new Random().nextInt(100),
+					"user"+new Random().nextInt(100), "text"+new Random().nextInt(100));
 			list.add(t);
 		}
 		
