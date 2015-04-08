@@ -97,6 +97,7 @@ public class StatusActivity extends Activity {
 			// TODO Auto-generated method stub
 			Twitter twitter = ((YambaApplication) getApplication()).getTwitter();
 			winterwell.jtwitter.Status status = twitter.updateStatus(params[0]);
+			
 			return status.text;
 		}
 
